@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid } from "@mui/material";
 
-const Filters = ({ applyFilters }) => {
+function Filters({ applyFilters }) {
     const [filterCriteria, setFilterCriteria] = useState({
         title: "",
         company: "",
@@ -60,6 +60,6 @@ const Filters = ({ applyFilters }) => {
             </Grid>
         </Grid>
     );
-};
+}
 
 export default Filters;

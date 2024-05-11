@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-// import JobCard from "./JobCard";
+import JobCard from "./JobCard";
 import { Grid } from "@mui/material";
 import Dropdown from "./DropDown";
 import "./styles.css";
 
-const JobList = () => {
+function JobList() {
     const [jobs, setJobs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -150,6 +150,8 @@ const JobList = () => {
                 style={{
                     display: "flex",
                     flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
                     flexWrap: "wrap",
                     gap: "5px",
                 }}
@@ -210,10 +212,10 @@ const JobList = () => {
                     </Grid>
                 ))}
             </Grid>
-            {isLoading && <div>Loading more...</div>}
+            {isLoading && <div id="loading-more-div">Loading more...</div>}
             {!isLoading && !hasMore && <div>No more jobs to load</div>}
         </div>
     );
-};
+}
 
 export default JobList;
