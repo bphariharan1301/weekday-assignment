@@ -1,16 +1,8 @@
+// Filters.js
 import React, { useState } from "react";
-import {
-    TextField,
-    Button,
-    Grid,
-    Stack,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-} from "@mui/material";
+import { TextField, Button, Grid } from "@mui/material";
 
-function Filters({ applyFilters }) {
+const Filters = ({ applyFilters }) => {
     const [filterCriteria, setFilterCriteria] = useState({
         title: "",
         company: "",
@@ -18,91 +10,56 @@ function Filters({ applyFilters }) {
         experience: "",
     });
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFilterCriteria({ ...filterCriteria, [name]: value });
+    };
+
+    const handleApplyFilters = () => {
+        applyFilters(filterCriteria);
+    };
+
     return (
-        <Stack display={"flex"} flexDirection="row" gap={2}>
-            <FormControl size="small" fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                    Min Experience
-                </InputLabel>
-                <Select
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl size="small" fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                    Company Name
-                </InputLabel>
-                <Select
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl size="small" fullWidth>
-                <InputLabel id="demo-simple-select-label">Location</InputLabel>
-                <Select
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl size="small" fullWidth>
-                <InputLabel id="demo-simple-select-label">Job Role</InputLabel>
-                <Select
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl size="small" fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                    Salary Currency
-                </InputLabel>
-                <Select
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    // value={age}
-                    label="Age"
-                    // onChange={handleChange}
-                >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-        </Stack>
+        <Grid container spacing={2} alignItems="center">
+            <Grid item>
+                <TextField
+                    label="Job Title"
+                    name="title"
+                    value={filterCriteria.title}
+                    onChange={handleChange}
+                />
+            </Grid>
+            <Grid item>
+                <TextField
+                    label="Company"
+                    name="company"
+                    value={filterCriteria.company}
+                    onChange={handleChange}
+                />
+            </Grid>
+            <Grid item>
+                <TextField
+                    label="Location"
+                    name="location"
+                    value={filterCriteria.location}
+                    onChange={handleChange}
+                />
+            </Grid>
+            <Grid item>
+                <TextField
+                    label="Experience"
+                    name="experience"
+                    value={filterCriteria.experience}
+                    onChange={handleChange}
+                />
+            </Grid>
+            <Grid item>
+                <Button variant="contained" onClick={handleApplyFilters}>
+                    Apply Filters
+                </Button>
+            </Grid>
+        </Grid>
     );
-}
+};
 
 export default Filters;
