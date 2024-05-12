@@ -205,7 +205,15 @@ function JobList() {
                     }
                 />
             </div>
-            <Grid container spacing={4} sx={{ mt: "1% !important" }}>
+            <Grid
+                container
+                spacing={4}
+                sx={{
+                    mt: "1% !important",
+                    paddingLeft: "2rem",
+                    paddingRight: "2rem",
+                }}
+            >
                 {filteredJobs.map((job, index) => (
                     <Grid key={index} item xs={12} sm={6} md={4}>
                         <JobCard job={job} />

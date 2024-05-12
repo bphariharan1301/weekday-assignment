@@ -5,6 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Chip from "@mui/material/Chip";
+import { Autocomplete, TextField } from "@mui/material";
 
 const StyledFormControl = styled(FormControl)(({ theme }) => ({
     margin: theme.spacing(1),
@@ -13,8 +14,12 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
 }));
 
 function Dropdown({ values, label, selectedValues, setSelectedValues }) {
-    const handleChange = (event) => {
-        setSelectedValues(event.target.value);
+    console.log("label", label);
+    console.log("values", values);
+    const handleChange = (event, newValue) => {
+        console.log("event", event.target.value);
+        console.log("newValue", newValue);
+        setSelectedValues(newValue);
     };
 
     return (
@@ -24,30 +29,30 @@ function Dropdown({ values, label, selectedValues, setSelectedValues }) {
                 width: "30%",
             }}
         >
-            <InputLabel>{label}</InputLabel>
-            <Select
+            <Autocomplete
                 sx={{
                     width: "100%",
                 }}
                 size="small"
                 multiple
-                label={label}
+                id="fixed-tags-demo"
                 value={selectedValues}
-                onChange={handleChange}
-                renderValue={(selected) => (
-                    <div>
-                        {selected.map((value) => (
-                            <Chip key={value} label={value} />
-                        ))}
-                    </div>
+                onChange={(event, newValue) => handleChange(event, newValue)}
+                options={values.filter((value) => value !== null)}
+                getOptionLabel={(value) => (value !== null ? value : 4)}
+                renderTags={(selected, getTagProps) =>
+                    selected.map((value, index) => (
+                        <Chip
+                            key={value !== null ? value : 4}
+                            label={value !== null ? value : 4}
+                            {...getTagProps({ index })}
+                        />
+                    ))
+                }
+                renderInput={(params) => (
+                    <TextField {...params} label={label} placeholder={label} />
                 )}
-            >
-                {values.map((value) => (
-                    <MenuItem key={value} value={value}>
-                        {value}
-                    </MenuItem>
-                ))}
-            </Select>
+            />
         </StyledFormControl>
     );
 }
