@@ -2,6 +2,49 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installation and Usage Steps
+
+You can run this project in your local server by following the steps mentioned below:-
+
+1. ##### Installing the necessary packages
+    > `npm install ` or `npm i `
+2. ##### Run the server:
+    > `npm start`
+
+The Server will open in the port `3000` and you can access it by going to `localhost:3000` or `http://localhost:3000` in your preferred browser.
+
+## To Test the Functionalities in live server:
+
+This project is also live [here](https://weekday-assignment-hariharanbp.vercel.app/) and is hosted [vercel](https://vercel.com)
+
+### Features Implemented
+
+This react-app has the feature mentioned in the Assignment docs but not limited to the docs.
+
+Some of the Requirements which are implemented are as follows:
+
+-   Job Cards::
+
+    -   Job title
+    -   Company name
+    -   Location
+    -   Job description (limited to a certain number of characters with an option to expand)
+    -   Experience required
+    -   Apply button/link
+
+-   Filters:
+
+    -   Min experience
+    -   Company name
+    -   Location
+    -   Remote/on-site
+    -   Tech stack
+    -   Role
+    -   Min base pay
+
+-   Infinite Scroll
+-   Responsive Design
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -13,11 +56,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 

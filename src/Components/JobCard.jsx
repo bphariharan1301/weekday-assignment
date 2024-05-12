@@ -8,8 +8,6 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
-import lodash from "lodash";
-
 // Custom imports
 import "./styles.css";
 import toTitleCase from "../Utils/Utils";
