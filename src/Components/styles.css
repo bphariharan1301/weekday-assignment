@@ -5,3 +5,13 @@
 #loading-more-div {
   margin-top: 1rem;
 }
+
+.apply-btn {
+  background-color:#4AEFB7 !important;
+  color: #000000 !important;
+}
+
+.apply-btn:hover{
+  background-color: #06573c !important;
+  color: #fff !important;
+} 

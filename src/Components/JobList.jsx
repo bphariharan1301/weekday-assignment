@@ -3,6 +3,7 @@ import JobCard from "./JobCard";
 import { Grid } from "@mui/material";
 import Dropdown from "./DropDown";
 import "./styles.css";
+import toTitleCase from "../Utils/Utils";
 
 function JobList() {
     const [jobs, setJobs] = useState([]);
@@ -173,7 +174,7 @@ function JobList() {
                     }
                 />
                 <Dropdown
-                    values={locations}
+                    values={locations.map((location) => toTitleCase(location))}
                     label="Location"
                     selectedValues={filters.location}
                     setSelectedValues={(selectedValues) =>
@@ -181,7 +182,7 @@ function JobList() {
                     }
                 />
                 <Dropdown
-                    values={roles}
+                    values={roles.map((role) => toTitleCase(role))}
                     label="Job role"
                     selectedValues={filters.jobRole}
                     setSelectedValues={(selectedValues) =>
@@ -197,7 +198,7 @@ function JobList() {
                     }
                 />
                 <Dropdown
-                    values={salaries}
+                    values={salaries.sort()}
                     label="Min base pay"
                     selectedValues={filters.minJdSalary}
                     setSelectedValues={(selectedValues) =>

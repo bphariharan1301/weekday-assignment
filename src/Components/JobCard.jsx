@@ -5,14 +5,15 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import lodash from "lodash";
+
+// Custom imports
+import "./styles.css";
+import toTitleCase from "../Utils/Utils";
+import ButtonIcon from "../assets/button-icon.svg";
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -60,10 +61,14 @@ export default function JobCard({ job }) {
                     </div>
                 </div>
                 <Typography variant="h5" component="div">
-                    {job.jobRole}
+                    {/* {job.jobRole} */}
+                    {toTitleCase(job.jobRole)}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                    Estimated Salary: {job.minJdSalary}-{job.maxJdSalary}{" "}
+                    Estimated Salary:{" "}
+                    {job.minJdSalary ? <> {job.minJdSalary + "k"}</> : ""}{" "}
+                    {job.minJdSalary && job.maxJdSalary ? "-" : ""}{" "}
+                    {job.maxJdSalary ? <>{job.maxJdSalary + "k"}</> : <></>}{" "}
                     {job.salaryCurrencyCode}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" gutterBottom>
@@ -78,9 +83,21 @@ export default function JobCard({ job }) {
                         {truncate(job.jobDetailsFromCompany, 100)}
                     </Typography>
                 )}
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Button color="primary" onClick={handleReviewMoreClick}>
-                        view jobs
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <Button
+                        color="primary"
+                        sx={{
+                            textTransform: "capitalize",
+                        }}
+                        onClick={handleReviewMoreClick}
+                    >
+                        View Job
                     </Button>
                     <ExpandMore
                         expand={expanded}
@@ -95,20 +112,19 @@ export default function JobCard({ job }) {
                     Minimum Experience
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                    {job.minExp} - {job.maxExp} years
+                    {job.minExp ? <>{job.minExp} - </> : 0}{" "}
+                    {job.maxExp ? <>{job.maxExp}</> : <></>} year(s)
+                    {/* {job.minExp || job.maxExp ? "years" : ""} */}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
                         <Button
-                            variant="contained"
+                            variant="outlined"
                             size="medium"
-                            sx={{
-                                width: "100%",
-                                bgcolor: "#4AEFB7",
-                                color: "#000000",
-                            }}
+                            className="btn apply-btn"
+                            startIcon={<img src={ButtonIcon} alt="btn-icon" />}
                         >
                             Easy Apply
                         </Button>
@@ -118,6 +134,7 @@ export default function JobCard({ job }) {
                             variant="contained"
                             size="medium"
                             sx={{ width: "100%", bgcolor: "#392ECA" }}
+                            className="btn"
                         >
                             Unlock Referral Asks
                         </Button>
